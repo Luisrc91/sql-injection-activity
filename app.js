@@ -12,10 +12,8 @@ app.use(bodyParser.json());
 
 const db = new sqlite3.Database(":memory:");
 db.serialize(function () {
-  db.run("CREATE TABLE user (username luis, password asdf, title TEXT)");
-  db.run(
-    "INSERT INTO user VALUES ('privilegedUser', 'privilegedUser1', 'Administrator')"
-  );
+  db.run("CREATE TABLE user (username TEXT, password TEXT, title TEXT)");
+  db.run("INSERT INTO user VALUES ('asdf', 'asdf01', 'Administrator')");
 });
 
 app.get("/", function (req, res) {
@@ -53,6 +51,6 @@ app.post("/login", function (req, res) {
 });
 
 app.listen(PORT, function (err) {
-    if (err) console.log("Error in server setup");
-    console.log("Server listening on Port", PORT);
-  });
+  if (err) console.log("Error in server setup");
+  console.log("Server listening on Port", PORT);
+});
